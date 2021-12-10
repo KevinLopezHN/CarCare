@@ -1,0 +1,99 @@
+<div class="row">
+    <h1 class="text-center">Pedidos</h1>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #pedidoForm="ngForm" (ngSubmit)="agregarPedido(pedidoForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="pedidoService.seleccionPedido._id">
+                    <select  name="nombreEmpleado" id="nombreEmpleado" class="form-control" [(ngModel)]="pedidoService.seleccionPedido.nombreEmpleado" >
+                        <option value="">Eliga un empleado </option>
+                        <option *ngFor ="let empleado of empleadoService.empleados">
+                            {{empleado.nombre | uppercase}}, {{empleado.direccion}},  {{empleado.telefono}}
+                        </option>
+                    </select>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="carroCliente" placeholder="Ingrese su vehiculo" [(ngModel)]="pedidoService.seleccionPedido.carroCliente">    
+                    </div>
+                    <select  name="nombreServicio" id="nombreServicio" class="form-control" [(ngModel)]="pedidoService.seleccionPedido.nombreServicio" >
+                        <option value="">Eliga un servicio </option>
+                        <option *ngFor ="let servicio of servicioService.servicios">
+                            {{servicio.nombre | uppercase}}, {{servicio.precio}},  {{servicio.descripcion}}
+                        </option>
+                    </select>
+                    <select  name="nombreComplemento" id="nombreComplemento" class="form-control" [(ngModel)]="pedidoService.seleccionPedido.nombreComplemento" >
+                        <option value="">Eliga un complemento </option>
+                        <option *ngFor ="let complemento of complementoService.complementos">
+                            {{complemento.nombre | uppercase}}, {{complemento.precio}},  {{complemento.descripcion}}
+                        </option>
+                    </select>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="precioTotal" placeholder="Precio Total" [(ngModel)]="pedidoService.seleccionPedido.precioTotal" value="{{precioTotal}}" readonly>   
+                        <button type="button" class="btn btn-primary" (click)="sumar()">Sumar Precio Total</button> 
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="instrucciones" placeholder="Instrucciones" [(ngModel)]="pedidoService.seleccionPedido.instrucciones">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="fecha" type="datetime-local" placeholder="Fecha" [(ngModel)]="pedidoService.seleccionPedido.fecha">    
+                       
+                    </div>
+                    <select onchange="this.className=this.options[this.selectedIndex].className" class="greenText" name="estado"
+                     id="estado" class="form-control" [(ngModel)]="pedidoService.seleccionPedido.estado" >
+                        <option value=""> Selecciona Estado </option>
+                        <option class="pendiente" value="pendiente"  > pendiente </option>
+                        <option class="aceptado" value="aceptado" > aceptado </option>
+                        <option class="en-proceso" value="en proceso" > en proceso </option>
+                        <option class="completado" value="completado" > completado </option>
+                        <option class="cancelado" value="cancelado"> cancelado </option>
+                    </select>
+                    
+                    <!-- <button class="btn btn-primary mr-2" (click)="resetForm(pedidoForm)">
+                        Limpiar
+                    </button> -->
+                    <button class="btn btn-secondary">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th>Informacion del Empleado</th>
+                    <th>Informacion de su carro</th>
+                    <th>Informacion del Servicio</th>
+                    <th>Informacion del Complemento</th>
+                    <th>Precio Total</th>
+                    <th>Instrucciones para el empleado</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of pedidoService.pedidos">
+                    <td>{{pedido.nombreEmpleado}}</td>
+                    <td>{{pedido.carroCliente}}</td>
+                    <td>{{pedido.nombreServicio}}</td>
+                    <td>{{pedido.nombreComplemento}}</td>
+                    <td>Lps.{{pedido.precioTotal}}</td>
+                    <td>{{pedido.instrucciones}}</td>
+                    <td>{{pedido.fecha}}</td>
+                    <td *ngIf="pedido.estado === 'pendiente'" value="pendiente" class="pendiente">pendiente</td>
+                    <td *ngIf="pedido.estado === 'aceptado'" value="aceptado" class="aceptado">aceptado</td>
+                    <td *ngIf="pedido.estado === 'en proceso'" value="en proceso" class="en-proceso">en proceso</td>
+                    <td *ngIf="pedido.estado === 'completado'" value="completado" class="completado">completado</td>
+                    <td *ngIf="pedido.estado === 'cancelado'" value="cancelado" class="cancelado">cancelado</td>
+                    <td *ngIf="pedido.estado !== 'completado'">
+                        <button type="button" class="btn btn-warning btn-sm" (click)="editarPedido(pedido)" ><i class="material-icons" >edit</i>Editar</button>
+                       
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

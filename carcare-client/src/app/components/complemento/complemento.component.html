@@ -1,0 +1,51 @@
+<div class="row">
+    <h1 class="text-center">Complementos</h1>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #complementoForm="ngForm" (ngSubmit)="agregarComplemento(complementoForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="complementoService.seleccionComplemento._id">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre Completo" [(ngModel)]="complementoService.seleccionComplemento.nombre">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="descripcion" placeholder="Descripcion" [(ngModel)]="complementoService.seleccionComplemento.descripcion">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="precio" placeholder="Precio" [(ngModel)]="complementoService.seleccionComplemento.precio">    
+                    </div>
+                   <!--  <button class="btn btn-primary mr-2" (click)="resetForm(complementoForm)">
+                        Limpiar
+                    </button> -->
+                    <button class="btn btn-secondary">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let complemento of complementoService.complementos">
+                    <td>{{complemento.nombre}}</td>
+                    <td>{{complemento.descripcion}}</td>
+                    <td>{{complemento.precio}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm" (click)="editarComplemento(complemento)"><i class="material-icons" >edit</i>Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarComplemento(complemento._id!)"><i class="material-icons" >delete</i>Eliminar</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

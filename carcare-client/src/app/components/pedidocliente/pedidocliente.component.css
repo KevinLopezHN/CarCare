@@ -1,0 +1,15 @@
+.pendiente{
+    background-color: #d0ff00;
+}
+.aceptado{
+    background-color: #00f85b;
+}
+.en-proceso{
+    background-color: #1100ff;
+}
+.completado{
+    background-color: #1b6a1e;
+}
+.cancelado{
+    background-color: #ff0000;
+}

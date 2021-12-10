@@ -1,0 +1,61 @@
+<div class="row">
+    <h1 class="text-center">Empleados</h1>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #empleadoForm="ngForm" (ngSubmit)="agregarEmpleado(empleadoForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="empleadoService.seleccionEmpleado._id">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre Completo" [(ngModel)]="empleadoService.seleccionEmpleado.nombre">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="telefono" placeholder="Telefono" [(ngModel)]="empleadoService.seleccionEmpleado.telefono">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="direccion" placeholder="Direccion" [(ngModel)]="empleadoService.seleccionEmpleado.direccion">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="correo"  placeholder="Correo" [(ngModel)]="empleadoService.seleccionEmpleado.correo">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="contrasena" placeholder="Contrasena" [(ngModel)]="empleadoService.seleccionEmpleado.contrasena">
+                    </div>
+                 <!--    <button class="btn btn-primary mr-2" (click)="resetForm(empleadoForm)">
+                        Limpiar
+                    </button> -->
+                    <button class="btn btn-secondary">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let empleado of empleadoService.empleados">
+                    <td>{{empleado.nombre}}</td>
+                    <td>{{empleado.telefono}}</td>
+                    <td>{{empleado.direccion}}</td>
+                    <td>{{empleado.correo}}</td>
+                    <td>{{empleado.contrasena}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm" (click)="editarEmpleado(empleado)"><i class="material-icons" >edit</i>Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarEmpleado(empleado._id!)"><i class="material-icons" >delete</i>Eliminar</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

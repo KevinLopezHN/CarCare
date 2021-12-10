@@ -1,0 +1,24 @@
+<h1 class="text-center">Iniciar Sesion Empleado</h1>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header text-center">
+                Inicia Sesion Empleado
+            </div>
+            <div class="card-body">
+                <form (submit)="signIn()">
+                   
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="user.correo" name="correo" class="form-control" placeholder="Correo" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="user.contrasena" name="contrasena" class="form-control" placeholder="Contrasena" required>
+                    </div>
+                    <button class="btn btn-primary btn-block">
+                        Iniciar Sesion
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

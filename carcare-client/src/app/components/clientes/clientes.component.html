@@ -1,0 +1,66 @@
+<div class="row">
+    <h1 class="text-center">Clientes</h1>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #clienteForm="ngForm" (ngSubmit)="agregarCliente(clienteForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="clienteService.seleccionCliente._id">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre Completo" [(ngModel)]="clienteService.seleccionCliente.nombre">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="telefono" placeholder="Telefono" [(ngModel)]="clienteService.seleccionCliente.telefono">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="direccion" placeholder="Direccion" [(ngModel)]="clienteService.seleccionCliente.direccion">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="correo"  placeholder="Correo" [(ngModel)]="clienteService.seleccionCliente.correo">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="carro"  placeholder="Carro" [(ngModel)]="clienteService.seleccionCliente.carro">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="contrasena" placeholder="Contrasena" [(ngModel)]="clienteService.seleccionCliente.contrasena">
+                    </div>
+                   <!--  <button class="btn btn-primary mr-2" (click)="resetForm(clienteForm)">
+                        Limpiar
+                    </button> -->
+                    <button class="btn btn-secondary">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Carro</th>
+                    <th>Contraseña</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clienteService.clientes">
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.telefono}}</td>
+                    <td>{{cliente.direccion}}</td>
+                    <td>{{cliente.correo}}</td>
+                    <td>{{cliente.carro}}</td>
+                    <td>{{cliente.contrasena}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm" (click)="editarCliente(cliente)"><i class="material-icons" >edit</i>Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarCliente(cliente._id!)"><i class="material-icons" >delete</i>Eliminar</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

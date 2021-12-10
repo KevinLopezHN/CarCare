@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets\CarCareLogo.png" width="50" height="50" class="d-inline-block align-top" alt="">
+      Car Care</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Inicio
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink = '/acerca'>Acerca de la Empresa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink = '/pregunta'>Preguntas Frecuentes</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+       <ng-container *ngIf="!authService.loggedIn();else loggedIn">
+        <a class="btn btn-secondary my-2 my-sm-0"  href="#" role="button" routerLink ='/registrorol'>Registrarse</a>
+        <a class="btn "  href="#" role="button" routerLink ='/iniciarsesionrol'>Iniciar Sesion</a>
+       </ng-container>
+       <ng-template #loggedIn>
+        <li class="nav-item">
+          <a class="btn"  (click)="authService.logout()">Cerrar Sesion</a>
+        </li>
+       </ng-template>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-5">
+  <router-outlet></router-outlet>
+</div>

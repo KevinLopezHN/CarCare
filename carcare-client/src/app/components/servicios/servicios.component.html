@@ -1,0 +1,56 @@
+<div class="row">
+    <h1 class="text-center">Servicios</h1>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #servicioForm="ngForm" (ngSubmit)="agregarServicio(servicioForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="servicioService.seleccionServicio._id">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre Completo" [(ngModel)]="servicioService.seleccionServicio.nombre">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="descripcion" placeholder="Descripcion" [(ngModel)]="servicioService.seleccionServicio.descripcion">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="precio" placeholder="Precio" [(ngModel)]="servicioService.seleccionServicio.precio">    
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="duracion" placeholder="Duracion" [(ngModel)]="servicioService.seleccionServicio.duracion">    
+                    </div>
+                  <!--   <button class="btn btn-primary mr-2" (click)="resetForm(servicioForm)">
+                        Limpiar
+                    </button> -->
+                    <button class="btn btn-secondary">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Duracion</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let servicio of servicioService.servicios">
+                    <td>{{servicio.nombre}}</td>
+                    <td>{{servicio.descripcion}}</td>
+                    <td>{{servicio.precio}}</td>
+                    <td>{{servicio.duracion}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm" (click)="editarServicio(servicio)"><i class="material-icons" >edit</i>Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarServicio(servicio._id!)"><i class="material-icons" >delete</i>Eliminar</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
